@@ -11,7 +11,7 @@ function addAd() {
         console.log(mainNav[0].nextElementSibling);
     }
 
-    var vidURL = chrome.runtime.getURL("woolooloo.mp4")
+    var vidURL = chrome.runtime.getURL("woolooloo.mp4");
     var div = document.createElement("DIV");
     div.id = "addad420";
     var vid = document.createElement("VIDEO");
@@ -42,24 +42,24 @@ function removeAd() {
 function preventSeeking() {
     var video = document.getElementById('addad69');
     var supposedCurrentTime = 0;
-    video.addEventListener('timeupdate', function() {
-    if (!video.seeking) {
+    video.addEventListener('timeupdate', function () {
+        if (!video.seeking) {
             supposedCurrentTime = video.currentTime;
-    }
+        }
     });
     // prevent user from seeking
-    video.addEventListener('seeking', function() {
-    // guard agains infinite recursion:
-    // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
-    var delta = video.currentTime - supposedCurrentTime;
-    if (Math.abs(delta) > 0.01) {
-        console.log("Seeking is disabled");
-        video.currentTime = supposedCurrentTime;
-    }
+    video.addEventListener('seeking', function () {
+        // guard agains infinite recursion:
+        // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
+        var delta = video.currentTime - supposedCurrentTime;
+        if (Math.abs(delta) > 0.01) {
+            console.log("Seeking is disabled");
+            video.currentTime = supposedCurrentTime;
+        }
     });
     // delete the following event handler if rewind is not required
-    video.addEventListener('ended', function() {
-    // reset state in order to allow for rewind
+    video.addEventListener('ended', function () {
+        // reset state in order to allow for rewind
         supposedCurrentTime = 0;
         // allow user to close the video
         document.getElementById("close").style.display = "block";
@@ -67,10 +67,10 @@ function preventSeeking() {
 }
 
 window.onload = () => {
-    chrome.storage.sync.get("isActive",({isActive}) => {
+    chrome.storage.sync.get("isActive", ({ isActive }) => {
         if (isActive) {
             addAd();
             preventSeeking();
         }
-    })
-}
+    });
+};
