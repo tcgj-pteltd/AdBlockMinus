@@ -132,8 +132,6 @@ function addHeaderAd() {
         else
             document.querySelector(".main-content")?.prepend(div2);
         adList.push(div2);
-
-        hasLoadedBefore = true;
     }, 1000);
 }
 
@@ -163,6 +161,20 @@ function addSidebarAd() {
     adList.push(div);
 }
 
+function addFooterAd() {
+    const imageHref = getRandomAd();
+    const imgURL = chrome.runtime.getURL(imageHref);
+    const div = document.createElement("DIV");
+    div.id = "add-footer";
+    const img = document.createElement("IMG");
+    img.id = "add-media";
+    img.src = imgURL;
+    img.alt = "Footer Ad";
+    div.appendChild(img);
+    document.body.append(div);
+    adList.push(div);
+}
+
 function addPopupAd() {
     const div = document.createElement("DIV");
     div.id = "add-pop";
@@ -174,7 +186,7 @@ function addPopupAd() {
     adList.push(div);
 }
 
-function loadAddAd(loadVideos = true) {
+function loadAddAd() {
     chrome.storage.sync.get([
         "isActive",
         "overlayActive",
@@ -184,7 +196,7 @@ function loadAddAd(loadVideos = true) {
         "popupActive"
     ], ({ isActive, overlayActive, headerActive, sidebarActive, footerActive, popupActive }) => {
         if (isActive) {
-            if (overlayActive && loadVideos) {
+            if (overlayActive) {
                 addOverlayAd();
                 preventVideoSeek();
             }
@@ -197,20 +209,17 @@ function loadAddAd(loadVideos = true) {
             if (popupActive) {
                 addPopupAd();
             }
+            if (footerActive) {
+                addFooterAd();
+            }
         }
     });
 };
 
-function removeAllAds(removeOtherAdds = true) {
-    adList.forEach(ad => {
-        if (ad.id === "add-subheader" || ad.id === "add-header" || removeOtherAdds) {
-            ad.remove();
-        }
-    });
+function removeAllAds() {
+    adList.forEach(ad => ad.remove());
     adList = [];
 }
-
-let hasLoadedBefore = false;
 
 chrome.runtime.onMessage.addListener(function (message) {
     if (!message.refresh)
@@ -219,16 +228,5 @@ chrome.runtime.onMessage.addListener(function (message) {
     removeAllAds();
     loadAddAd();
 });
-
-let currentPage = location.href;
-
-setInterval(function () {
-    if (currentPage != location.href && hasLoadedBefore) {
-        // page has changed, set new page as 'current'
-        currentPage = location.href;
-        removeAllAds(false);
-        loadAddAd(false);
-    }
-}, 5000);
 
 window.onload = loadAddAd;
