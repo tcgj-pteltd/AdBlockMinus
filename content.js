@@ -1,3 +1,5 @@
+let adList = [];
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -6,7 +8,7 @@ function getRandomInt(min, max) {
 
 function getRandomAd(min = 1, max = 10) {
     const index = getRandomInt(min, max);
-    switch(index) {
+    switch (index) {
         case 1:
         case 3:
         case 5:
@@ -18,7 +20,7 @@ function getRandomAd(min = 1, max = 10) {
         case 2:
         case 6:
             return `ads/ad${index}.gif`;
-        case 4: 
+        case 4:
             return `ads/ad${index}.jpeg`;
         default:
             return `ads/ernest.png`;
@@ -27,7 +29,7 @@ function getRandomAd(min = 1, max = 10) {
 
 function getRandomSidebarAd(min = 1, max = 1) {
     const index = getRandomInt(min, max);
-    switch(index) {
+    switch (index) {
         case 1:
             return `ads/sidebar-${index}.jpg`;
         default:
@@ -35,7 +37,7 @@ function getRandomSidebarAd(min = 1, max = 1) {
     }
 }
 
-function addAd() {
+function addOverlayAd() {
     var vidURL = chrome.runtime.getURL("woolooloo.mp4");
     var div = document.createElement("DIV");
     div.id = "overlay-ad";
@@ -50,21 +52,22 @@ function addAd() {
     div.appendChild(vid);
     var button = document.createElement("button");
     button.id = "close";
-    button.onclick = removeAd;
+    button.onclick = removeOverlayAd;
     // hide the button to close the video, until user finishes watching the video
     button.style.display = "none";
     button.textContent = "Close Ad";
     div.appendChild(button);
     document.body.appendChild(div);
+    adList.push(div);
 }
 
-function removeAd() {
+function removeOverlayAd() {
     if (document.getElementById("overlay-ad")) {
         document.getElementById("overlay-ad").remove();
     }
 }
 
-function addAdToHeader() {
+function addHeaderAd() {
     const imageHref = getRandomAd();
     var imgURL = chrome.runtime.getURL(imageHref);
     var div = document.createElement("DIV");
@@ -75,6 +78,7 @@ function addAdToHeader() {
     img.alt = "Header Ad";
     div.appendChild(img);
     document.body.prepend(div);
+    adList.push(div);
 
     setTimeout(() => {
         const innerImageHref = getRandomAd();
@@ -85,21 +89,21 @@ function addAdToHeader() {
         img2.id = "ad-media";
         img2.src = newImgURL;
         div2.appendChild(img2);
-    
+
         const sectionHeader = document.querySelector(".section-header");
         sectionHeader?.prepend(div2);
-    
+
         const mainContent = document.querySelector(".main-content");
         mainContent?.prepend(div2);
+        adList.push(div2);
     }, 1000);
 }
 
-function addAdToSidebar() {
+function addSidebarAd() {
     var div = document.createElement("div");
     div.id = "wrap";
     // Move the body's children into this wrapper
-    while (document.body.firstChild)
-    {
+    while (document.body.firstChild) {
         div.appendChild(document.body.firstChild);
     }
     // Append the wrapper to the body
@@ -115,9 +119,10 @@ function addAdToSidebar() {
     img.alt = "Sidebar Ad";
     div.appendChild(img);
     document.body.prepend(div);
+    adList.push(img);
 }
 
-function preventSeeking() {
+function preventVideoSeek() {
     var video = document.getElementById('ad-media');
     var supposedCurrentTime = 0;
     video.addEventListener('timeupdate', function () {
@@ -144,7 +149,7 @@ function preventSeeking() {
     });
 }
 
-window.onload = () => {
+function loadAddAd() {
     chrome.storage.sync.get([
         'isActive',
         'overlayActive',
@@ -153,17 +158,30 @@ window.onload = () => {
     ], ({ isActive, overlayActive, headerActive, footerActive }) => {
         if (isActive) {
             if (overlayActive) {
-                addAd();
-                preventSeeking();
+                addOverlayAd();
+                preventVideoSeek();
             }
-
             if (headerActive) {
-                addAdToHeader();
+                addHeaderAd();
             }
-
             if (footerActive) {
-                addAdToSidebar();
+                addSidebarAd();
             }
         }
     });
 };
+
+function removeAllAds() {
+    adList.forEach(ad => ad.remove());
+    adList = [];
+}
+
+chrome.runtime.onMessage.addListener(function (message) {
+    if (!message.refresh)
+        return;
+
+    removeAllAds();
+    loadAddAd();
+});
+
+window.onload = loadAddAd;
