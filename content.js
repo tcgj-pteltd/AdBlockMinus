@@ -217,6 +217,6 @@ setInterval(function()
         removeAllAds();
         loadAddAd();
     }
-}, 500);
+}, 5000);
 
 window.onload = loadAddAd;
