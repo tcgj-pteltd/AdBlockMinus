@@ -1,11 +1,11 @@
-const toggle = document.querySelector(".switch input");
+const extToggle = document.getElementById("ext-toggle").firstChild;
 
 window.onload = () => {
     chrome.storage.sync.get("isActive", ({ isActive }) => {
-        toggle.checked = isActive;
+        extToggle.checked = isActive;
     });
 };
 
-toggle.addEventListener("click", function () {
+extToggle.addEventListener("click", function () {
     chrome.storage.sync.set({ isActive: this.checked });
 });

@@ -9,12 +9,36 @@
     <main>
         <header>
             <div>Allow AddAd to beautify your site?</div>
-            <label class="switch">
+            <label id="ext-toggle" class="switch">
                 <input type="checkbox">
                 <span class="slider round"></span>
             </label>
         </header>
-        <section></section>
+        <section id="options">
+            <ul>
+                <li>
+                    <div>Enable Overlay Ads?</div>
+                    <label id="overlay-toggle" class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+                <li>
+                    <div>Enable Header Ads?</div>
+                    <label id="header-toggle" class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+                <li>
+                    <div>Enable Footer Ads?</div>
+                    <label id="footer-toggle" class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+            </ul>
+        </section>
     </main>
     <script src="popup.js"></script>
 </body>
