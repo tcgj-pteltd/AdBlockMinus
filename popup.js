@@ -3,7 +3,7 @@ const extToggle = document.getElementById("ext-toggle").firstElementChild;
 const overlayToggle = document.getElementById("overlay-toggle").firstElementChild;
 const headerToggle = document.getElementById("header-toggle").firstElementChild;
 const footerToggle = document.getElementById("footer-toggle").firstElementChild;
-
+const toggles = document.getElementById("options").querySelectorAll(".switch");
 
 window.onload = () => {
     chrome.storage.sync.get([
@@ -11,7 +11,7 @@ window.onload = () => {
         'overlayActive',
         'headerActive',
         'footerActive'
-       ], ({ isActive, overlayActive, headerActive, footerActive }) => {
+    ], ({ isActive, overlayActive, headerActive, footerActive }) => {
         extToggle.checked = isActive;
         overlayToggle.checked = overlayActive;
         headerToggle.checked = headerActive;
@@ -21,6 +21,8 @@ window.onload = () => {
 
 extToggle.addEventListener("click", function () {
     chrome.storage.sync.set({ isActive: this.checked });
+    console.log(toggles);
+    toggles.forEach(toggle => toggle.classList.toggle("switch-disabled", !this.checked));
 });
 
 overlayToggle.addEventListener("click", function () {

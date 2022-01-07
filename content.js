@@ -34,6 +34,7 @@ function addAdToHeader() {
     var img = document.createElement("IMG");
     img.id = "addad69";
     img.src = imgURL;
+    img.alt = "Header Ad";
     div.appendChild(img);
     document.body.prepend(div);
 }
@@ -71,9 +72,8 @@ window.onload = () => {
         'overlayActive',
         'headerActive',
         'footerActive'
-       ], ({ isActive, overlayActive, headerActive, footerActive }) => {
+    ], ({ isActive, overlayActive, headerActive, footerActive }) => {
         if (isActive) {
-
             if (overlayActive) {
                 addAd();
                 preventSeeking();
