@@ -1,4 +1,4 @@
-const extToggle = document.getElementById("ext-toggle").firstChild;
+const extToggle = document.getElementById("ext-toggle").firstElementChild;
 
 window.onload = () => {
     chrome.storage.sync.get("isActive", ({ isActive }) => {
