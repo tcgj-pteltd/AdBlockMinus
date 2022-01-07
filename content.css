@@ -59,7 +59,7 @@
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 2147483646; /* Stay on top */
     top: 0; /* Stay at the top */
-    left: -160px;
+    left: -180px;
     display: flex;
     justify-content: center;
     align-items: center;
