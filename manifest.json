@@ -29,6 +29,7 @@
                 "ads/ad11.gif", "ads/ad12.gif", "ads/ad13.gif",
                 "ads/sidebar-1.jpg", "ads/sidebar-2.jpg", "ads/sidebar-3.png", 
                 "ads/sidebar-4.png", "ads/sidebar-5.jpg",
+                "ads/sidebar-6.gif", "ads/sidebar-7.gif",
                 "ads/popup1.html"
             ],
             "matches": [ "<all_urls>" ]

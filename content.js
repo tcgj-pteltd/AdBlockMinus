@@ -40,6 +40,9 @@ function getRandomSidebarAd(min = 1, max = 5) {
         case 3:
         case 4:
             return `ads/sidebar-${index}.png`;
+        case 6:
+        case 7:
+            return `ads/sidebar-${index}.gif`;
         default:
             return `ads/ernest.png`;
     }
