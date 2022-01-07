@@ -5,6 +5,8 @@ const headerToggle = document.getElementById("header-toggle").firstElementChild;
 const footerToggle = document.getElementById("footer-toggle").firstElementChild;
 const toggles = document.getElementById("options").querySelectorAll(".switch");
 
+const refreshBtn = document.getElementById("refresh-ext");
+
 window.onload = () => {
     chrome.storage.sync.get([
         'isActive',
@@ -12,7 +14,8 @@ window.onload = () => {
         'headerActive',
         'footerActive'
     ], ({ isActive, overlayActive, headerActive, footerActive }) => {
-        extToggle.checked = isActive;
+        extToggle.classList.toggle("disabled", !isActive);
+        toggles.forEach(toggle => toggle.classList.toggle("disabled", !isActive));
         overlayToggle.checked = overlayActive;
         headerToggle.checked = headerActive;
         footerToggle.checked = footerActive;
@@ -37,4 +40,8 @@ headerToggle.addEventListener("click", function () {
 
 footerToggle.addEventListener("click", function () {
     chrome.storage.sync.set({ footerActive: this.checked });
+});
+
+refreshBtn.addEventListener("click", function () {
+
 });

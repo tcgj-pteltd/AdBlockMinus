@@ -31,11 +31,15 @@ header {
 }
 
 #ext-toggle:hover {
-    filter: drop-shadow(0 0 10px rgb(14, 141, 3));
+    filter: drop-shadow(0 0 10px #0e8d03);
 }
 
 #ext-toggle.disabled {
     filter: grayscale(1);
+}
+
+#ext-toggle.disabled:hover {
+    filter: grayscale(1) drop-shadow(0 0 10px #5c5c5c);
 }
 
 .switch {
