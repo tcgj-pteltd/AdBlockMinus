@@ -38,15 +38,15 @@ function getRandomSidebarAd(min = 1, max = 1) {
 }
 
 function preventVideoSeek() {
-    var video = document.getElementById('add-media');
+    var video = document.getElementById("add-media");
     var supposedCurrentTime = 0;
-    video.addEventListener('timeupdate', function () {
+    video.addEventListener("timeupdate", function () {
         if (!video.seeking) {
             supposedCurrentTime = video.currentTime;
         }
     });
     // prevent user from seeking
-    video.addEventListener('seeking', function () {
+    video.addEventListener("seeking", function () {
         // guard agains infinite recursion:
         // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
         var delta = video.currentTime - supposedCurrentTime;
@@ -56,7 +56,7 @@ function preventVideoSeek() {
         }
     });
     // delete the following event handler if rewind is not required
-    video.addEventListener('ended', function () {
+    video.addEventListener("ended", function () {
         // reset state in order to allow for rewind
         supposedCurrentTime = 0;
         // allow user to close the video
@@ -142,11 +142,12 @@ function addSidebarAd() {
 
 function loadAddAd() {
     chrome.storage.sync.get([
-        'isActive',
-        'overlayActive',
-        'headerActive',
-        'footerActive'
-    ], ({ isActive, overlayActive, headerActive, footerActive }) => {
+        "isActive",
+        "overlayActive",
+        "headerActive",
+        "sidebarActive",
+        "footerActive"
+    ], ({ isActive, overlayActive, headerActive, sidebarActive, footerActive }) => {
         if (isActive) {
             if (overlayActive) {
                 addOverlayAd();
@@ -155,7 +156,7 @@ function loadAddAd() {
             if (headerActive) {
                 addHeaderAd();
             }
-            if (footerActive) {
+            if (sidebarActive) {
                 addSidebarAd();
             }
         }
