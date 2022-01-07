@@ -176,6 +176,15 @@ function addPopupAd() {
     adList.push(div);
 }
 
+function redirectAd() {
+    let links = document.getElementsByTagName("A");
+    for (let i = 0; i < links.length; i ++) {
+        if (links[i].href) {
+            links[i].href = chrome.runtime.getURL(`ads/redirect1.html?href=${links[i].href}`);
+        }
+    }
+}
+
 function loadAddAd() {
     chrome.storage.sync.get([
         "isActive",
@@ -199,6 +208,7 @@ function loadAddAd() {
             if (popupActive) {
                 addPopupAd();
             }
+            redirectAd();
         }
     });
 };

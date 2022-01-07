@@ -30,7 +30,8 @@
                 "ads/sidebar-1.jpg", "ads/sidebar-2.jpg", "ads/sidebar-3.png", 
                 "ads/sidebar-4.png", "ads/sidebar-5.jpg",
                 "ads/sidebar-6.gif", "ads/sidebar-7.gif",
-                "ads/popup1.html"
+                "ads/popup1.html", "ads/redirect1.html",
+                "ads/redirect1.gif", "ads/redirect2.gif", "ads/redirect3.gif", "ads/redirect4.gif"
             ],
             "matches": [ "<all_urls>" ]
         }
