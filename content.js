@@ -50,7 +50,7 @@ function getRandomSidebarAd(min = 1, max = 7) {
 
 function preventVideoSeek() {
     const video = document.getElementById("add-media");
-    const supposedCurrentTime = 0;
+    let supposedCurrentTime = 0;
     video.addEventListener("timeupdate", function () {
         if (!video.seeking) {
             supposedCurrentTime = video.currentTime;
@@ -100,9 +100,7 @@ function addOverlayAd() {
 }
 
 function removeOverlayAd() {
-    if (document.getElementById("add-overlay")) {
-        document.getElementById("add-overlay").remove();
-    }
+    document.getElementById("add-overlay")?.remove();
 }
 
 function addHeaderAd() {
