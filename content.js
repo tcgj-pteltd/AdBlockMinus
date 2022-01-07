@@ -151,7 +151,7 @@ function addPopupAd() {
     div.id = "add-pop";
     div.addEventListener("click", function () {
         div.classList.add("disabled");
-        window.open('http://www.google.com', '_blank', 'toolbar=0,location=0,menubar=0');
+        window.open(chrome.runtime.getURL('ads/popup1.html'), '_blank', 'toolbar=0,location=0,menubar=0');
     });
     document.body.prepend(div);
     adList.push(div);
