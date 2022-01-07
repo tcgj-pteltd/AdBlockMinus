@@ -25,7 +25,7 @@
         {
             "resources": [ "woolooloo.mp4", "image.jpg", "ads/ad1.png", 
                 "ads/ad2.gif", "ads/ad3.png", "ads/ad4.jpeg", "ads/ad5.png",
-                "ads/sidebar-1.jpg"
+                "ads/sidebar-1.jpg", "ads/ad6.gif"
             ],
             "matches": [ "<all_urls>" ]
         }
