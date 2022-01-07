@@ -1,4 +1,4 @@
-const extToggle = document.getElementById("ext-toggle").firstElementChild;
+const extToggle = document.getElementById("ext-toggle");
 
 const overlayToggle = document.getElementById("overlay-toggle").firstElementChild;
 const headerToggle = document.getElementById("header-toggle").firstElementChild;
@@ -20,9 +20,11 @@ window.onload = () => {
 };
 
 extToggle.addEventListener("click", function () {
-    chrome.storage.sync.set({ isActive: this.checked });
-    console.log(toggles);
-    toggles.forEach(toggle => toggle.classList.toggle("switch-disabled", !this.checked));
+    chrome.storage.sync.get("isActive", ({ isActive }) => {
+        chrome.storage.sync.set({ isActive: !isActive });
+        extToggle.classList.toggle("disabled", isActive);
+        toggles.forEach(toggle => toggle.classList.toggle("disabled", isActive));
+    });
 });
 
 overlayToggle.addEventListener("click", function () {
