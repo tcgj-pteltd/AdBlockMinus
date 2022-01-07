@@ -30,3 +30,11 @@
     display: none;
     -webkit-appearance: none;
 }
+
+#ad-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
