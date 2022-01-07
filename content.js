@@ -189,12 +189,29 @@ function removeAllAds() {
     adList = [];
 }
 
+let hasLoadedBefore = false;
+
 chrome.runtime.onMessage.addListener(function (message) {
     if (!message.refresh)
         return;
 
     removeAllAds();
     loadAddAd();
+
+    hasLoadedBefore = true;
 });
+
+let currentPage = location.href;
+
+setInterval(function()
+{
+    if (currentPage != location.href && hasLoadedBefore)
+    {
+        // page has changed, set new page as 'current'
+        currentPage = location.href;
+        removeAllAds();
+        loadAddAd();
+    }
+}, 500);
 
 window.onload = loadAddAd;
