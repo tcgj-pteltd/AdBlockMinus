@@ -4,6 +4,7 @@ const overlayToggle = document.getElementById("overlay-toggle").firstElementChil
 const headerToggle = document.getElementById("header-toggle").firstElementChild;
 const sidebarToggle = document.getElementById("sidebar-toggle").firstElementChild;
 const footerToggle = document.getElementById("footer-toggle").firstElementChild;
+const popupToggle = document.getElementById("popup-toggle").firstElementChild;
 const toggles = document.getElementById("options").querySelectorAll(".switch");
 
 const refreshBtn = document.getElementById("refresh-ext");
@@ -14,14 +15,23 @@ window.onload = () => {
         "overlayActive",
         "headerActive",
         "sidebarActive",
-        "footerActive"
-    ], ({ isActive, overlayActive, headerActive, sidebarActive, footerActive }) => {
+        "footerActive",
+        "popupActive"
+    ], ({
+        isActive = true,
+        overlayActive = true,
+        headerActive = true,
+        sidebarActive = true,
+        footerActive = true,
+        popupActive = true
+    }) => {
         extToggle.classList.toggle("disabled", !isActive);
         toggles.forEach(toggle => toggle.classList.toggle("disabled", !isActive));
         overlayToggle.checked = overlayActive;
         headerToggle.checked = headerActive;
         sidebarToggle.checked = sidebarActive;
         footerToggle.checked = footerActive;
+        popupToggle.checked = popupActive;
     });
 };
 
@@ -47,6 +57,10 @@ sidebarToggle.addEventListener("click", function () {
 
 footerToggle.addEventListener("click", function () {
     chrome.storage.sync.set({ footerActive: this.checked });
+});
+
+popupToggle.addEventListener("click", function () {
+    chrome.storage.sync.set({ popupActive: this.checked });
 });
 
 refreshBtn.addEventListener("click", function () {
