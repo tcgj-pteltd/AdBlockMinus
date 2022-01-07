@@ -1,14 +1,14 @@
 function addAd() {
     var vidURL = chrome.runtime.getURL("woolooloo.mp4");
     var div = document.createElement("DIV");
-    div.id = "addad420";
+    div.id = "overlay-ad";
     var vid = document.createElement("VIDEO");
 
     vid.setAttribute("controls", "true");
     vid.setAttribute("disablePictureInPicture", "true");
     vid.setAttribute("controlsList", "nodownload noplaybackrate nopictureinpicture");
 
-    vid.id = "addad69";
+    vid.id = "ad-media";
     vid.src = vidURL;
     div.appendChild(vid);
     var button = document.createElement("button");
@@ -22,8 +22,8 @@ function addAd() {
 }
 
 function removeAd() {
-    if (document.getElementById("addad420")) {
-        document.getElementById("addad420").remove();
+    if (document.getElementById("overlay-ad")) {
+        document.getElementById("overlay-ad").remove();
     }
 }
 
@@ -32,7 +32,7 @@ function addAdToHeader() {
     var div = document.createElement("DIV");
     div.id = "header";
     var img = document.createElement("IMG");
-    img.id = "addad69";
+    img.id = "ad-media";
     img.src = imgURL;
     img.alt = "Header Ad";
     div.appendChild(img);
@@ -40,7 +40,7 @@ function addAdToHeader() {
 }
 
 function preventSeeking() {
-    var video = document.getElementById('addad69');
+    var video = document.getElementById('ad-media');
     var supposedCurrentTime = 0;
     video.addEventListener('timeupdate', function () {
         if (!video.seeking) {

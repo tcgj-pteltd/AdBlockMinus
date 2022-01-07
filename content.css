@@ -1,4 +1,4 @@
-#addad420 {
+#overlay-ad {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -11,22 +11,22 @@
     z-index: 10000;
 }
 
-#addad420 img,
-#addad420 video {
+#overlay-ad img,
+#overlay-ad video {
     max-width: 80vw;
     max-height: 80vh;
 }
 
-#addad420 button {
+#overlay-ad button {
     position: fixed;
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-#addad420 video::-webkit-media-controls-volume-slider-container,
-#addad420 video::-webkit-media-controls-volume-slider,
-#addad420 video::-webkit-media-controls-mute-button {
+#overlay-ad video::-webkit-media-controls-volume-slider-container,
+#overlay-ad video::-webkit-media-controls-volume-slider,
+#overlay-ad video::-webkit-media-controls-mute-button {
     display: none;
     -webkit-appearance: none;
 }
