@@ -27,6 +27,17 @@ function removeAd() {
     }
 }
 
+function addAdToHeader() {
+    var imgURL = chrome.runtime.getURL("image.jpg");
+    var div = document.createElement("DIV");
+    div.id = "header";
+    var img = document.createElement("IMG");
+    img.id = "addad69";
+    img.src = imgURL;
+    div.appendChild(img);
+    document.body.prepend(div);
+}
+
 function preventSeeking() {
     var video = document.getElementById('addad69');
     var supposedCurrentTime = 0;
@@ -55,10 +66,22 @@ function preventSeeking() {
 }
 
 window.onload = () => {
-    chrome.storage.sync.get("isActive", ({ isActive }) => {
+    chrome.storage.sync.get([
+        'isActive',
+        'overlayActive',
+        'headerActive',
+        'footerActive'
+       ], ({ isActive, overlayActive, headerActive, footerActive }) => {
         if (isActive) {
-            addAd();
-            preventSeeking();
+
+            if (overlayActive) {
+                addAd();
+                preventSeeking();
+            }
+
+            if (headerActive) {
+                addAdToHeader();
+            }
         }
     });
 };
