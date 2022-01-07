@@ -144,6 +144,18 @@ function addSidebarAd() {
     var imgURL = chrome.runtime.getURL(imageHref);
     var div = document.createElement("DIV");
     div.id = "add-side";
+    setTimeout(() => {
+        div.classList.add("opened");
+    }, 2000);
+    var close = document.createElement("DIV");
+    close.id = "add-close";
+    close.addEventListener("click", function () {
+        div.classList.remove("opened");
+        setTimeout(() => {
+            div.classList.add("opened");
+        }, 20000);
+    });
+    div.appendChild(close);
     var img = document.createElement("IMG");
     img.id = "add-media";
     img.src = imgURL;
@@ -208,10 +220,8 @@ chrome.runtime.onMessage.addListener(function (message) {
 
 let currentPage = location.href;
 
-setInterval(function()
-{
-    if (currentPage != location.href && hasLoadedBefore)
-    {
+setInterval(function () {
+    if (currentPage != location.href && hasLoadedBefore) {
         // page has changed, set new page as 'current'
         currentPage = location.href;
         removeAllAds();
