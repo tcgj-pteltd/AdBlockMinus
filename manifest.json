@@ -23,7 +23,10 @@
     },
     "web_accessible_resources": [
         {
-            "resources": [ "woolooloo.mp4", "image.jpg", "ads/ad1.png", "ads/ad2.gif", "ads/ad3.png", "ads/ad4.jpeg", "ads/ad5.png" ],
+            "resources": [ "woolooloo.mp4", "image.jpg", "ads/ad1.png", 
+                "ads/ad2.gif", "ads/ad3.png", "ads/ad4.jpeg", "ads/ad5.png",
+                "ads/sidebar-1.jpg"
+            ],
             "matches": [ "<all_urls>" ]
         }
     ],
