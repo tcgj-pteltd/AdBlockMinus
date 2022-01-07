@@ -23,7 +23,7 @@
     },
     "web_accessible_resources": [
         {
-            "resources": [ "woolooloo.mp4" ],
+            "resources": [ "woolooloo.mp4", "image.jpg" ],
             "matches": [ "<all_urls>" ]
         }
     ],
