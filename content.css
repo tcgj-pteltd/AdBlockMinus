@@ -90,6 +90,12 @@
     transform: rotate(-45deg);
 }
 
+#add-footer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
 #add-pop {
     position: fixed;
     width: 100vw;

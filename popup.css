@@ -131,3 +131,7 @@ input:checked + .slider:before {
     justify-content: space-between;
     align-items: center;
 }
+
+#refresh {
+    padding: 1em;
+}
