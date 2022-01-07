@@ -146,14 +146,26 @@ function addSidebarAd() {
     adList.push(div);
 }
 
+function addPopupAd() {
+    var div = document.createElement("DIV");
+    div.id = "add-pop";
+    div.addEventListener("click", function () {
+        div.classList.add("disabled");
+        window.open('http://www.google.com', '_blank', 'toolbar=0,location=0,menubar=0');
+    });
+    document.body.prepend(div);
+    adList.push(div);
+}
+
 function loadAddAd() {
     chrome.storage.sync.get([
         "isActive",
         "overlayActive",
         "headerActive",
         "sidebarActive",
-        "footerActive"
-    ], ({ isActive, overlayActive, headerActive, sidebarActive, footerActive }) => {
+        "footerActive",
+        "popupActive"
+    ], ({ isActive, overlayActive, headerActive, sidebarActive, footerActive, popupActive }) => {
         if (isActive) {
             if (overlayActive) {
                 addOverlayAd();
@@ -164,6 +176,9 @@ function loadAddAd() {
             }
             if (sidebarActive) {
                 addSidebarAd();
+            }
+            if (popupActive) {
+                addPopupAd();
             }
         }
     });

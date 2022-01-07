@@ -1,7 +1,10 @@
 #add-media {
-
     width: fit-content;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #add-overlay {
@@ -43,6 +46,13 @@
     justify-content: center;
 }
 
+#add-subheader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 #add-side {
     height: 100vh; /* Full-height: remove this if you want "auto" height */
     width: 160px; /* Set the width of the sidebar */
@@ -61,4 +71,17 @@
     to {
         left: 0;
     }
+}
+
+#add-pop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 2147483647;
+}
+
+#add-pop.disabled {
+    display: none;
 }
