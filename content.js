@@ -1,16 +1,4 @@
 function addAd() {
-    var nav = document.getElementsByTagName("nav");
-    if (nav[0] !== undefined) {
-        console.log(nav[0]);
-        console.log(nav[0].nextElementSibling);
-    }
-
-    var mainNav = document.getElementsByTagName("main-nav");
-    if (mainNav[0] !== undefined) {
-        console.log(mainNav[0]);
-        console.log(mainNav[0].nextElementSibling);
-    }
-
     var vidURL = chrome.runtime.getURL("woolooloo.mp4");
     var div = document.createElement("DIV");
     div.id = "addad420";
