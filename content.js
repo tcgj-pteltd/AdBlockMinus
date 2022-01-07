@@ -71,7 +71,7 @@ function preventVideoSeek() {
 }
 
 function addOverlayAd() {
-    var vidURL = chrome.runtime.getURL("woolooloo.mp4");
+    var vidURL = chrome.runtime.getURL("ads/video1.mp4");
     var div = document.createElement("DIV");
     div.id = "add-overlay";
     var vid = document.createElement("VIDEO");
