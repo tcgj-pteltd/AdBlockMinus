@@ -1,3 +1,3 @@
-chrome.runtime.onInstalled.addListener(() => {
-    console.log("Test");
-});
+addAds = () => {
+  console.log("clicked!");
+};

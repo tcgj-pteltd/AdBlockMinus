@@ -3,7 +3,13 @@
     "description": "Extension that adds ads to your site for you!",
     "version": "1.0",
     "manifest_version": 2,
+    "chrome_url_overrides": {
+        "newtab": "app.html"
+    },
     "background": {
-        "service_worker": "background.js"
-    }
+        "persistent": true,
+        "scripts": ["background.js"]
+    },
+
+    "permissions": []
 }
