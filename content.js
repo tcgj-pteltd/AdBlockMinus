@@ -49,8 +49,8 @@ function getRandomSidebarAd(min = 1, max = 7) {
 }
 
 function preventVideoSeek() {
-    var video = document.getElementById("add-media");
-    var supposedCurrentTime = 0;
+    const video = document.getElementById("add-media");
+    const supposedCurrentTime = 0;
     video.addEventListener("timeupdate", function () {
         if (!video.seeking) {
             supposedCurrentTime = video.currentTime;
@@ -60,7 +60,7 @@ function preventVideoSeek() {
     video.addEventListener("seeking", function () {
         // guard agains infinite recursion:
         // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
-        var delta = video.currentTime - supposedCurrentTime;
+        const delta = video.currentTime - supposedCurrentTime;
         if (Math.abs(delta) > 0.01) {
             console.log("Seeking is disabled");
             video.currentTime = supposedCurrentTime;
@@ -76,10 +76,10 @@ function preventVideoSeek() {
 }
 
 function addOverlayAd() {
-    var vidURL = chrome.runtime.getURL("ads/video1.mp4");
-    var div = document.createElement("DIV");
+    const vidURL = chrome.runtime.getURL("ads/video1.mp4");
+    const div = document.createElement("DIV");
     div.id = "add-overlay";
-    var vid = document.createElement("VIDEO");
+    const vid = document.createElement("VIDEO");
 
     vid.setAttribute("controls", "true");
     vid.setAttribute("disablePictureInPicture", "true");
@@ -88,7 +88,7 @@ function addOverlayAd() {
     vid.id = "add-media";
     vid.src = vidURL;
     div.appendChild(vid);
-    var button = document.createElement("button");
+    const button = document.createElement("button");
     button.id = "close";
     button.onclick = removeOverlayAd;
     // hide the button to close the video, until user finishes watching the video
@@ -107,10 +107,10 @@ function removeOverlayAd() {
 
 function addHeaderAd() {
     const imageHref = getRandomAd();
-    var imgURL = chrome.runtime.getURL(imageHref);
-    var div = document.createElement("DIV");
+    const imgURL = chrome.runtime.getURL(imageHref);
+    const div = document.createElement("DIV");
     div.id = "add-header";
-    var img = document.createElement("IMG");
+    const img = document.createElement("IMG");
     img.id = "add-media";
     img.src = imgURL;
     img.alt = "Header Ad";
@@ -120,10 +120,10 @@ function addHeaderAd() {
 
     setTimeout(() => {
         const innerImageHref = getRandomAd();
-        var newImgURL = chrome.runtime.getURL(innerImageHref);
-        var div2 = document.createElement("DIV");
+        const newImgURL = chrome.runtime.getURL(innerImageHref);
+        const div2 = document.createElement("DIV");
         div2.id = "add-subheader";
-        var img2 = document.createElement("IMG");
+        const img2 = document.createElement("IMG");
         img2.id = "add-media";
         img2.src = newImgURL;
         div2.appendChild(img2);
@@ -141,13 +141,13 @@ function addHeaderAd() {
 
 function addSidebarAd() {
     const imageHref = getRandomSidebarAd();
-    var imgURL = chrome.runtime.getURL(imageHref);
-    var div = document.createElement("DIV");
+    const imgURL = chrome.runtime.getURL(imageHref);
+    const div = document.createElement("DIV");
     div.id = "add-side";
     setTimeout(() => {
         div.classList.add("opened");
     }, 2000);
-    var close = document.createElement("DIV");
+    const close = document.createElement("DIV");
     close.id = "add-close";
     close.addEventListener("click", function () {
         div.classList.remove("opened");
@@ -156,7 +156,7 @@ function addSidebarAd() {
         }, 20000);
     });
     div.appendChild(close);
-    var img = document.createElement("IMG");
+    const img = document.createElement("IMG");
     img.id = "add-media";
     img.src = imgURL;
     img.alt = "Sidebar Ad";
@@ -166,7 +166,7 @@ function addSidebarAd() {
 }
 
 function addPopupAd() {
-    var div = document.createElement("DIV");
+    const div = document.createElement("DIV");
     div.id = "add-pop";
     div.addEventListener("click", function () {
         div.classList.add("disabled");
