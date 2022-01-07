@@ -59,7 +59,7 @@
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 2147483646; /* Stay on top */
     top: 0; /* Stay at the top */
-    left: -200px;
+    left: -500px;
     padding: 10vh 0;
     display: flex;
     flex-direction: column;
@@ -67,11 +67,11 @@
     align-items: flex-end;
     text-align: center;
     gap: 1em;
-    transition: transform 500ms ease-in;
+    transition: transform 700ms ease-in;
 }
 
 #add-side.opened {
-    transform: translateX(200px);
+    transform: translateX(500px);
 }
 
 #add-close::before,
