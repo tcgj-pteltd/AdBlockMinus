@@ -30,11 +30,14 @@ function getRandomAd(min = 1, max = 13) {
     }
 }
 
-function getRandomSidebarAd(min = 1, max = 1) {
+function getRandomSidebarAd(min = 1, max = 3) {
     const index = getRandomInt(min, max);
     switch (index) {
         case 1:
+        case 2:
             return `ads/sidebar-${index}.jpg`;
+        case 3:
+            return `ads/sidebar-${index}.png`;
         default:
             return `ads/ernest.png`;
     }
