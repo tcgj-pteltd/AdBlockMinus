@@ -24,8 +24,11 @@ function addAd() {
     vid.src = vidURL;
     div.appendChild(vid);
     var button = document.createElement("button");
+    button.id = "close";
     button.onclick = removeAd;
-    button.textContent = "How are you doing?";
+    // hide the button to close the video, until user finishes watching the video
+    button.style.display = "none";
+    button.textContent = "Close Ad";
     div.appendChild(button);
     document.body.appendChild(div);
 }
@@ -58,6 +61,8 @@ function preventSeeking() {
     video.addEventListener('ended', function() {
     // reset state in order to allow for rewind
         supposedCurrentTime = 0;
+        // allow user to close the video
+        document.getElementById("close").style.display = "block";
     });
 }
 
