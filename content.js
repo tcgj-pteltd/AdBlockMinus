@@ -30,7 +30,7 @@ function getRandomAd(min = 1, max = 13) {
     }
 }
 
-function getRandomSidebarAd(min = 1, max = 5) {
+function getRandomSidebarAd(min = 1, max = 7) {
     const index = getRandomInt(min, max);
     switch (index) {
         case 1:
