@@ -1,4 +1,4 @@
-#overlay-ad {
+#add-overlay {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -8,30 +8,30 @@
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 10000;
+    z-index: 2147483647;
 }
 
-#overlay-ad img,
-#overlay-ad video {
+#add-overlay img,
+#add-overlay video {
     max-width: 80vw;
     max-height: 80vh;
 }
 
-#overlay-ad button {
+#add-overlay button {
     position: fixed;
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-#overlay-ad video::-webkit-media-controls-volume-slider-container,
-#overlay-ad video::-webkit-media-controls-volume-slider,
-#overlay-ad video::-webkit-media-controls-mute-button {
+#add-overlay video::-webkit-media-controls-volume-slider-container,
+#add-overlay video::-webkit-media-controls-volume-slider,
+#add-overlay video::-webkit-media-controls-mute-button {
     display: none;
     -webkit-appearance: none;
 }
 
-#ad-media {
+#add-media {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,21 +39,22 @@
     width: 100%;
 }
 
-#sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
+#add-side {
+    height: 100vh; /* Full-height: remove this if you want "auto" height */
     width: 160px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
+    z-index: 2147483646; /* Stay on top */
     top: 0; /* Stay at the top */
-    left: 0;
+    left: -160px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    animation: slide-in-side 500ms ease-in 3s forwards;
 }
 
-#wrap {
-    height: 100%;
-    margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
+@keyframes slide-in-side {
+    to {
+        left: 0;
+    }
 }
