@@ -23,17 +23,7 @@ function addAd() {
     vid.id = "addad69";
     vid.src = vidURL;
     div.appendChild(vid);
-    var button = document.createElement("button");
-    button.onclick = removeAd;
-    button.textContent = "How are you doing?";
-    div.appendChild(button);
     document.body.appendChild(div);
-}
-
-function removeAd() {
-    if (document.getElementById("addad420")) {
-        document.getElementById("addad420").remove();
-    }
 }
 
 function preventSeeking() {
@@ -43,6 +33,11 @@ function preventSeeking() {
     if (!video.seeking) {
             supposedCurrentTime = video.currentTime;
     }
+    });
+    video.addEventListener('ended', function() {
+        if (document.getElementById("addad420")) {
+            document.getElementById("addad420").remove();
+        }
     });
     // prevent user from seeking
     video.addEventListener('seeking', function() {
