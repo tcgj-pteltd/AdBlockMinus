@@ -3,22 +3,30 @@
     "description": "Extension that adds ads to your site for you!",
     "version": "1.0",
     "manifest_version": 3,
-    "chrome_url_overrides": {
-        "newtab": "app.html"
-    },
     "background": {
-        "persistent": true,
-        "scripts": ["background.js"]
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
     },
     "web_accessible_resources": [
         "woolooloo.mp4"
     ],
-    "content_scripts": [{
-        "matches": ["<all_urls>"],
-        "js": ["content.js"],
-        "css":["content.css"]
-    }],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "content.css"
+            ]
+        }
+    ],
     "permissions": [
+        "storage",
         "activeTab"
     ]
 }
