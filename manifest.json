@@ -1,0 +1,9 @@
+{
+    "name": "AddAds",
+    "description": "Extension that adds ads to your site for you!",
+    "version": "1.0",
+    "manifest_version": 2,
+    "background": {
+        "service_worker": "background.js"
+    }
+}
