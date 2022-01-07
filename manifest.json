@@ -10,7 +10,10 @@
         "default_popup": "popup.html"
     },
     "web_accessible_resources": [
-        "woolooloo.mp4"
+        {
+            "resources": [ "woolooloo.mp4" ],
+            "matches": [ "<all_urls>" ]
+        }
     ],
     "content_scripts": [
         {

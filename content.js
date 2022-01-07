@@ -11,7 +11,7 @@ function addAd() {
         console.log(mainNav[0].nextElementSibling);
     }
 
-    var vidURL = chrome.extension.getURL("woolooloo.mp4")
+    var vidURL = chrome.runtime.getURL("woolooloo.mp4")
     var div = document.createElement("DIV");
     div.id = "addad420";
     var vid = document.createElement("VIDEO");
@@ -61,5 +61,11 @@ function preventSeeking() {
     });
 }
 
-addAd();
-preventSeeking();
+window.onload = () => {
+    chrome.storage.sync.get("isActive",({isActive}) => {
+        if (isActive) {
+            addAd();
+            preventSeeking();
+        }
+    })
+}
