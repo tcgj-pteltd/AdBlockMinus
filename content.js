@@ -4,19 +4,22 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 };
 
-function getRandomAd(min = 1, max = 6) {
+function getRandomAd(min = 1, max = 10) {
     const index = getRandomInt(min, max);
     switch(index) {
         case 1:
         case 3:
         case 5:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
             return `ads/ad${index}.png`;
         case 2:
+        case 6:
             return `ads/ad${index}.gif`;
         case 4: 
             return `ads/ad${index}.jpeg`;
-        case 6:
-            return `ads/ad${index}.gif`;
         default:
             return `ads/ernest.png`;
     }
