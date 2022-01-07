@@ -1,3 +1,9 @@
+#add-media {
+
+    width: fit-content;
+    height: 100%;
+}
+
 #add-overlay {
     position: fixed;
     display: flex;
@@ -31,12 +37,10 @@
     -webkit-appearance: none;
 }
 
-#add-media {
+#add-header {
+    height: 100px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
 }
 
 #add-side {
@@ -50,7 +54,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    animation: slide-in-side 500ms ease-in 3s forwards;
+    animation: slide-in-side 500ms ease-in 2s forwards;
 }
 
 @keyframes slide-in-side {
