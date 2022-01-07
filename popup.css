@@ -17,12 +17,25 @@ main > * {
 
 header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
+    flex-direction: column;
     white-space: nowrap;
     padding: 1em;
+    gap: 1em;
     font-weight: bold;
+}
+
+#ext-toggle {
+    align-self: center;
+    width: 60%;
+    transition: filter 300ms;
+}
+
+#ext-toggle:hover {
+    filter: drop-shadow(0 0 10px rgb(14, 141, 3));
+}
+
+#ext-toggle.disabled {
+    filter: grayscale(1);
 }
 
 .switch {
@@ -40,12 +53,12 @@ header {
 }
 
 /* Disable switch */
-.switch.switch-disabled {
+.switch.disabled {
     pointer-events: none;
     opacity: 40%;
 }
 
-.switch.switch-disabled > .slider {
+.switch.disabled > .slider {
     background-color: lightgray;
 }
 
