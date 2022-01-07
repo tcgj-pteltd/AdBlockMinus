@@ -28,7 +28,7 @@ function removeAd() {
 }
 
 function addAdToHeader() {
-    var imgURL = chrome.runtime.getURL("image.jpg");
+    var imgURL = chrome.runtime.getURL("ads/ad1.png");
     var div = document.createElement("DIV");
     div.id = "header";
     var img = document.createElement("IMG");
@@ -37,6 +37,24 @@ function addAdToHeader() {
     img.alt = "Header Ad";
     div.appendChild(img);
     document.body.prepend(div);
+
+
+    // Add ads to luminus section header
+    setTimeout(() => {
+        var newImgURL = chrome.runtime.getURL("ads/ad5.png");
+        var div2 = document.createElement("DIV");
+        div2.id = "header";
+        var img2 = document.createElement("IMG");
+        img2.id = "ad-media";
+        img2.src = newImgURL;
+        div2.appendChild(img2);
+
+        const sectionHeader = document.querySelector(".section-header");
+        sectionHeader?.prepend(div2);
+
+        const mainContent = document.querySelector(".main-content");
+        mainContent?.prepend(div2);
+    }, 1000);
 }
 
 function preventSeeking() {
