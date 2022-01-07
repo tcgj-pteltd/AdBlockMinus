@@ -1,3 +1,35 @@
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+};
+
+function getRandomAd(min = 1, max = 5) {
+    const index = getRandomInt(min, max);
+    switch(index) {
+        case 1:
+        case 3:
+        case 5:
+            return `ads/ad${index}.png`;
+        case 2:
+            return `ads/ad${index}.gif`;
+        case 4: 
+            return `ads/ad${index}.jpeg`;
+        default:
+            return `ads/ernest.png`;
+    }
+}
+
+function getRandomSidebarAd(min = 1, max = 1) {
+    const index = getRandomInt(min, max);
+    switch(index) {
+        case 1:
+            return `ads/sidebar-${index}.jpg`;
+        default:
+            return `ads/ernest.png`;
+    }
+}
+
 function addAd() {
     var vidURL = chrome.runtime.getURL("woolooloo.mp4");
     var div = document.createElement("DIV");
@@ -28,7 +60,8 @@ function removeAd() {
 }
 
 function addAdToHeader() {
-    var imgURL = chrome.runtime.getURL("ads/ad1.png");
+    const imageHref = getRandomAd();
+    var imgURL = chrome.runtime.getURL(imageHref);
     var div = document.createElement("DIV");
     div.id = "header";
     var img = document.createElement("IMG");
@@ -39,7 +72,8 @@ function addAdToHeader() {
     document.body.prepend(div);
 
     setTimeout(() => {
-        var newImgURL = chrome.runtime.getURL("ads/ad5.png");
+        const innerImageHref = getRandomAd();
+        var newImgURL = chrome.runtime.getURL(innerImageHref);
         var div2 = document.createElement("DIV");
         div2.id = "header";
         var img2 = document.createElement("IMG");
@@ -66,7 +100,8 @@ function addAdToSidebar() {
     // Append the wrapper to the body
     document.body.appendChild(div);
 
-    var imgURL = chrome.runtime.getURL("ads/sidebar-1.jpg");
+    const imageHref = getRandomSidebarAd();
+    var imgURL = chrome.runtime.getURL(imageHref);
     var div = document.createElement("DIV");
     div.id = "sidenav";
     var img = document.createElement("IMG");
