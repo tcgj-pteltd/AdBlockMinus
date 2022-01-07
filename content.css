@@ -55,22 +55,39 @@
 
 #add-side {
     height: 100vh; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
+    width: auto; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 2147483646; /* Stay on top */
     top: 0; /* Stay at the top */
-    left: -180px;
+    left: -200px;
+    padding: 10vh 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     text-align: center;
-    animation: slide-in-side 500ms ease-in 2s forwards;
+    gap: 1em;
+    transition: transform 500ms ease-in;
 }
 
-@keyframes slide-in-side {
-    to {
-        left: 0;
-    }
+#add-side.opened {
+    transform: translateX(200px);
+}
+
+#add-close::before,
+#add-close::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 15px;
+    height: 3px;
+    background-color: black;
+    transform: rotate(45deg);
+}
+
+#add-close::after {
+    transform: rotate(-45deg);
 }
 
 #add-pop {
