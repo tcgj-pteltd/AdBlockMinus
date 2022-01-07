@@ -176,7 +176,7 @@ function addPopupAd() {
     adList.push(div);
 }
 
-function loadAddAd() {
+function loadAddAd(loadVideos = true) {
     chrome.storage.sync.get([
         "isActive",
         "overlayActive",
@@ -186,7 +186,7 @@ function loadAddAd() {
         "popupActive"
     ], ({ isActive, overlayActive, headerActive, sidebarActive, footerActive, popupActive }) => {
         if (isActive) {
-            if (overlayActive) {
+            if (overlayActive && loadVideos) {
                 addOverlayAd();
                 preventVideoSeek();
             }
@@ -203,8 +203,12 @@ function loadAddAd() {
     });
 };
 
-function removeAllAds() {
-    adList.forEach(ad => ad.remove());
+function removeAllAds(removeOtherAdds = true) {
+    adList.forEach(ad => {
+        if (ad.id === "add-subheader" || ad.id === "add-header" || removeOtherAdds) {
+            ad.remove();
+        }
+    });
     adList = [];
 }
 
@@ -224,8 +228,8 @@ setInterval(function () {
     if (currentPage != location.href && hasLoadedBefore) {
         // page has changed, set new page as 'current'
         currentPage = location.href;
-        removeAllAds();
-        loadAddAd();
+        removeAllAds(false);
+        loadAddAd(false);
     }
 }, 5000);
 
