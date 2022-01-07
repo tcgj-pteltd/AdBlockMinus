@@ -2,7 +2,7 @@
     "name": "AddAds",
     "description": "Extension that adds ads to your site for you!",
     "version": "1.0",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "chrome_url_overrides": {
         "newtab": "app.html"
     },
@@ -10,6 +10,15 @@
         "persistent": true,
         "scripts": ["background.js"]
     },
-
-    "permissions": []
+    "web_accessible_resources": [
+        "woolooloo.mp4"
+    ],
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "css":["content.css"]
+    }],
+    "permissions": [
+        "activeTab"
+    ]
 }
