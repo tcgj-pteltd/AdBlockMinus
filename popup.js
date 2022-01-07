@@ -18,12 +18,12 @@ window.onload = () => {
         "footerActive",
         "popupActive"
     ], ({
-        isActive = true,
-        overlayActive = true,
-        headerActive = true,
-        sidebarActive = true,
-        footerActive = true,
-        popupActive = true
+        isActive,
+        overlayActive,
+        headerActive,
+        sidebarActive,
+        footerActive,
+        popupActive
     }) => {
         extToggle.classList.toggle("disabled", !isActive);
         toggles.forEach(toggle => toggle.classList.toggle("disabled", !isActive));

@@ -129,6 +129,8 @@ function addHeaderAd() {
         else
             document.querySelector(".main-content")?.prepend(div2);
         adList.push(div2);
+
+        hasLoadedBefore = true;
     }, 1000);
 }
 
@@ -197,8 +199,6 @@ chrome.runtime.onMessage.addListener(function (message) {
 
     removeAllAds();
     loadAddAd();
-
-    hasLoadedBefore = true;
 });
 
 let currentPage = location.href;
