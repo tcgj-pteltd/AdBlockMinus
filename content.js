@@ -104,23 +104,23 @@ function removeOverlayAd() {
 }
 
 function addHeaderAd() {
-    const imageHref = getRandomAd();
-    const imgURL = chrome.runtime.getURL(imageHref);
-    const div = document.createElement("DIV");
-    div.id = "add-header";
-    const img = document.createElement("IMG");
-    img.id = "add-media";
-    img.src = imgURL;
-    img.alt = "Header Ad";
-    div.appendChild(img);
-    const headerTag = document.querySelector("header") ?? document.getElementById("masthead");
-    if (headerTag)
-        headerTag.parentNode.insertBefore(div, headerTag);
-    else
-        document.body.prepend(div);
-    adList.push(div);
-
     setTimeout(() => {
+        const imageHref = getRandomAd();
+        const imgURL = chrome.runtime.getURL(imageHref);
+        const div = document.createElement("DIV");
+        div.id = "add-header";
+        const img = document.createElement("IMG");
+        img.id = "add-media";
+        img.src = imgURL;
+        img.alt = "Header Ad";
+        div.appendChild(img);
+        const headerTag = document.querySelector("header") ?? document.getElementById("masthead");
+        if (headerTag)
+            headerTag.parentNode.insertBefore(div, headerTag);
+        else
+            document.body.prepend(div);
+        adList.push(div);
+
         const innerImageHref = getRandomAd();
         const newImgURL = chrome.runtime.getURL(innerImageHref);
         const div2 = document.createElement("DIV");
@@ -136,7 +136,7 @@ function addHeaderAd() {
         else
             document.querySelector(".main-content")?.prepend(div2);
         adList.push(div2);
-    }, 1000);
+    }, 3000);
 }
 
 function addSidebarAd() {
@@ -166,17 +166,23 @@ function addSidebarAd() {
 }
 
 function addFooterAd() {
-    const imageHref = getRandomAd();
-    const imgURL = chrome.runtime.getURL(imageHref);
-    const div = document.createElement("DIV");
-    div.id = "add-footer";
-    const img = document.createElement("IMG");
-    img.id = "add-media";
-    img.src = imgURL;
-    img.alt = "Footer Ad";
-    div.appendChild(img);
-    document.body.append(div);
-    adList.push(div);
+    setTimeout(() => {
+        const imageHref = getRandomAd();
+        const imgURL = chrome.runtime.getURL(imageHref);
+        const div = document.createElement("DIV");
+        div.id = "add-footer";
+        const img = document.createElement("IMG");
+        img.id = "add-media";
+        img.src = imgURL;
+        img.alt = "Footer Ad";
+        div.appendChild(img);
+        const footerTag = document.querySelector("footer") ?? document.getElementById("masthead");
+        if (footerTag)
+            footerTag.after(div);
+        else
+            document.body.append(div);
+        adList.push(div);
+    }, 3000);
 }
 
 function addPopupAd() {
@@ -191,12 +197,14 @@ function addPopupAd() {
 }
 
 function addRedirectAd() {
-    let links = document.getElementsByTagName("A");
-    for (let i = 0; i < links.length; i++) {
-        if (links[i].href) {
-            links[i].href = chrome.runtime.getURL(`ads/redirect1.html?href=${links[i].href}`);
+    setTimeout(() => {
+        let links = document.getElementsByTagName("A");
+        for (let i = 0; i < links.length; i++) {
+            if (links[i].href) {
+                links[i].href = chrome.runtime.getURL(`ads/redirect1.html?href=${links[i].href}`);
+            }
         }
-    }
+    }, 3000);
 }
 
 function loadAds() {
