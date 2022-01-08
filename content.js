@@ -186,7 +186,7 @@ function addPopupAd() {
     adList.push(div);
 }
 
-function redirectAd() {
+function addRedirectAd() {
     let links = document.getElementsByTagName("A");
     for (let i = 0; i < links.length; i++) {
         if (links[i].href) {
@@ -202,8 +202,9 @@ function loadAds() {
         "headerActive",
         "sidebarActive",
         "footerActive",
-        "popupActive"
-    ], ({ isActive, overlayActive, headerActive, sidebarActive, footerActive, popupActive }) => {
+        "popupActive",
+        "redirectActive"
+    ], ({ isActive, overlayActive, headerActive, sidebarActive, footerActive, popupActive, redirectActive }) => {
         if (isActive) {
             if (overlayActive) {
                 addOverlayAd();
@@ -221,7 +222,9 @@ function loadAds() {
             if (footerActive) {
                 addFooterAd();
             }
-            redirectAd();
+            if (redirectActive) {
+                addRedirectAd();
+            }
         }
     });
 };

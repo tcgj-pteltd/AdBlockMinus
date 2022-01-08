@@ -5,6 +5,7 @@ const headerToggle = document.getElementById("header-toggle").firstElementChild;
 const sidebarToggle = document.getElementById("sidebar-toggle").firstElementChild;
 const footerToggle = document.getElementById("footer-toggle").firstElementChild;
 const popupToggle = document.getElementById("popup-toggle").firstElementChild;
+const redirectToggle = document.getElementById("redirect-toggle").firstElementChild;
 const toggles = document.getElementById("options").querySelectorAll(".switch");
 
 const refreshBtn = document.getElementById("refresh-ext");
@@ -16,14 +17,16 @@ window.onload = () => {
         "headerActive",
         "sidebarActive",
         "footerActive",
-        "popupActive"
+        "popupActive",
+        "redirectActive"
     ], ({
         isActive,
         overlayActive,
         headerActive,
         sidebarActive,
         footerActive,
-        popupActive
+        popupActive,
+        redirectActive
     }) => {
         extToggle.classList.toggle("disabled", !isActive);
         toggles.forEach(toggle => toggle.classList.toggle("disabled", !isActive));
@@ -32,6 +35,7 @@ window.onload = () => {
         sidebarToggle.checked = sidebarActive;
         footerToggle.checked = footerActive;
         popupToggle.checked = popupActive;
+        redirectToggle.checked = redirectActive;
     });
 };
 
@@ -64,6 +68,10 @@ footerToggle.addEventListener("click", function () {
 
 popupToggle.addEventListener("click", function () {
     chrome.storage.sync.set({ popupActive: this.checked });
+});
+
+redirectToggle.addEventListener("click", function () {
+    chrome.storage.sync.set({ redirectActive: this.checked });
 });
 
 refreshBtn.addEventListener("click", function () {
