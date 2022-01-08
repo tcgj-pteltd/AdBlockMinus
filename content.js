@@ -113,7 +113,11 @@ function addHeaderAd() {
     img.src = imgURL;
     img.alt = "Header Ad";
     div.appendChild(img);
-    document.body.prepend(div);
+    const headerTag = document.querySelector("header") ?? document.getElementById("masthead");
+    if (headerTag)
+        headerTag.parentNode.insertBefore(div, headerTag);
+    else
+        document.body.prepend(div);
     adList.push(div);
 
     setTimeout(() => {
