@@ -114,11 +114,7 @@ function addHeaderAd() {
         img.src = imgURL;
         img.alt = "Header Ad";
         div.appendChild(img);
-        const headerTag = document.querySelector("header") ?? document.getElementById("masthead");
-        if (headerTag)
-            headerTag.parentNode.insertBefore(div, headerTag);
-        else
-            document.body.prepend(div);
+        document.body.prepend(div);
         adList.push(div);
 
         const innerImageHref = getRandomAd();
@@ -129,7 +125,6 @@ function addHeaderAd() {
         img2.id = "add-media";
         img2.src = newImgURL;
         div2.appendChild(img2);
-
         const sectionHeader = document.querySelector(".section-header");
         if (sectionHeader)
             sectionHeader.prepend(div2);
@@ -176,11 +171,7 @@ function addFooterAd() {
         img.src = imgURL;
         img.alt = "Footer Ad";
         div.appendChild(img);
-        const footerTag = document.querySelector("footer") ?? document.getElementById("masthead");
-        if (footerTag)
-            footerTag.after(div);
-        else
-            document.body.append(div);
+        document.body.append(div);
         adList.push(div);
     }, 3000);
 }
