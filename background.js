@@ -5,7 +5,8 @@ chrome.runtime.onInstalled.addListener(() => {
         headerActive: true,
         sidebarActive: true,
         footerActive: true,
-        popupActive: true
+        popupActive: true,
+        redirectActive: true,
     });
     console.log("AddAd Installed!");
 });
