@@ -247,7 +247,7 @@ function removeAllAds() {
 }
 
 chrome.runtime.onMessage.addListener(function (message) {
-    if (message.refresh)
+    if (!message.refresh)
         return;
 
     removeAllAds();
