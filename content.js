@@ -188,14 +188,14 @@ function addPopupAd() {
 
 function redirectAd() {
     let links = document.getElementsByTagName("A");
-    for (let i = 0; i < links.length; i ++) {
+    for (let i = 0; i < links.length; i++) {
         if (links[i].href) {
             links[i].href = chrome.runtime.getURL(`ads/redirect1.html?href=${links[i].href}`);
         }
     }
 }
 
-function loadAddAd() {
+function loadAds() {
     chrome.storage.sync.get([
         "isActive",
         "overlayActive",
@@ -232,11 +232,20 @@ function removeAllAds() {
 }
 
 chrome.runtime.onMessage.addListener(function (message) {
-    if (!message.refresh)
+    if (message.refresh)
         return;
 
     removeAllAds();
-    loadAddAd();
+    loadAds();
 });
 
-window.onload = loadAddAd;
+chrome.runtime.onMessage.addListener(function (message) {
+    if (message.state == null)
+        return;
+    if (!message.state)
+        removeAllAds();
+    else
+        loadAds();
+});
+
+window.onload = loadAds;
