@@ -207,6 +207,16 @@ function addRedirectAd() {
     }, 3000);
 }
 
+function removeRedirectAd() {
+    let links = document.getElementsByTagName("A");
+    const prefix = chrome.runtime.getURL("ads/redirect1.html?href=");
+    for (let i = 0; i < links.length; i++) {
+        if (links[i].href && links[i].href.startsWith(prefix)) {
+            links[i].href = links[i].href.slice(prefix.length);
+        }
+    }
+}
+
 function loadAds() {
     chrome.storage.sync.get([
         "isActive",
@@ -242,6 +252,7 @@ function loadAds() {
 };
 
 function removeAllAds() {
+    removeRedirectAd();
     adList.forEach(ad => ad.remove());
     adList = [];
 }
@@ -255,6 +266,7 @@ chrome.runtime.onMessage.addListener(function (message) {
 });
 
 chrome.runtime.onMessage.addListener(function (message) {
+    console.log("reload");
     if (message.state == null)
         return;
     if (!message.state)
